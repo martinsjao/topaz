@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeSwitch } from "@/components/theme-switch";
 import { cn } from "@/lib/utils";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
+      suppressHydrationWarning
       className={cn(
         "h-full",
         "antialiased",
@@ -36,7 +38,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         jetbrainsMono.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        <script
+          id="theme-boot"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: sets the theme class before first paint
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="flex min-h-full flex-col">
+        {children}
+        <ThemeSwitch />
+      </body>
     </html>
   );
 }
