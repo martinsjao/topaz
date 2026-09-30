@@ -6,7 +6,10 @@
 		"apps/*"
 	],
 	"scripts": {
-		"dev": "bun --filter '*' dev"
+		"dev": "bun --filter api --filter web dev",
+		"db:up": "bun --filter db up",
+		"db:down": "bun --filter db down",
+		"db:push": "bun --filter db push"
 	},
 	"devDependencies": {
 		"@types/bun": "latest"

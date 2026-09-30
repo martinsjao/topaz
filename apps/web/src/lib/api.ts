@@ -1,5 +1,5 @@
 import { treaty } from "@elysiajs/eden";
-// Importamos APENAS a tipagem do backend do nosso monorepo
 import type { App } from "../../../api/src/index";
+import { apiUrl } from "./env";
 
-export const api = treaty<App>("http://localhost:3333");
+export const api = treaty<App>(apiUrl);

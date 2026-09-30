@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: topaz-postgres
+    # This host cannot create bridge veth interfaces, so the database
+    # listens directly on POSTGRES_PORT.
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    command: ["postgres", "-p", "${POSTGRES_PORT}"]
+    volumes:
+      - topaz-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} -p ${POSTGRES_PORT}",
+        ]
+      interval: 2s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  topaz-postgres:
