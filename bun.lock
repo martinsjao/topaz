@@ -7,9 +7,6 @@
       "devDependencies": {
         "@types/bun": "latest",
       },
-      "peerDependencies": {
-        "typescript": "^5.0.0",
-      },
     },
     "apps/api": {
       "name": "api",
@@ -17,23 +14,12 @@
       "dependencies": {
         "@better-auth/drizzle-adapter": "^1.7.6",
         "@elysiajs/cors": "^1.4.2",
+        "@topaz/db": "workspace:*",
         "better-auth": "^1.7.6",
-        "db": "workspace:*",
         "elysia": "latest",
       },
       "devDependencies": {
         "bun-types": "latest",
-      },
-    },
-    "apps/db": {
-      "name": "db",
-      "version": "0.0.0",
-      "dependencies": {
-        "drizzle-orm": "^0.45.2",
-        "postgres": "^3.4.9",
-      },
-      "devDependencies": {
-        "drizzle-kit": "^0.31.10",
       },
     },
     "apps/web": {
@@ -46,7 +32,6 @@
         "better-auth": "^1.7.6",
         "class-variance-authority": "^0.7.1",
         "cn": "^0.2.6",
-        "db": "workspace:*",
         "next": "16.3.4",
         "react": "19.2.8",
         "react-dom": "19.2.8",
@@ -62,6 +47,21 @@
         "tailwindcss": "^4",
         "typescript": "^5",
       },
+    },
+    "packages/db": {
+      "name": "@topaz/db",
+      "version": "0.0.0",
+      "dependencies": {
+        "drizzle-orm": "^0.45.2",
+        "postgres": "^3.4.9",
+      },
+      "devDependencies": {
+        "drizzle-kit": "^0.31.10",
+      },
+    },
+    "packages/shared": {
+      "name": "@topaz/shared",
+      "version": "0.0.0",
     },
   },
   "trustedDependencies": [
@@ -390,6 +390,10 @@
 
     "@tokenizer/token": ["@tokenizer/token@0.3.0", "", {}, "sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A=="],
 
+    "@topaz/db": ["@topaz/db@workspace:packages/db"],
+
+    "@topaz/shared": ["@topaz/shared@workspace:packages/shared"],
+
     "@ts-morph/common": ["@ts-morph/common@0.27.0", "", { "dependencies": { "fast-glob": "^3.3.3", "minimatch": "^10.0.1", "path-browserify": "^1.0.1" } }, "sha512-Wf29UqxWDpc+i61k3oIOzcUfQt79PIT9y/MWfAGlrkjg6lBC1hwDECLXPVJAhWjiGbfBCxZd65F/LIZF3+jeJQ=="],
 
     "@types/bun": ["@types/bun@1.4.2", "", { "dependencies": { "bun-types": "1.4.2" } }, "sha512-GimotNn7+ZV0uVArItBbriZsR1oNf0+WTzPkdcFrzShI7k2norL0uzEaJT8T33dWr7O/c9ZDuAFQrctKCi72oQ=="],
@@ -491,8 +495,6 @@
     "cssesc": ["cssesc@3.0.0", "", { "bin": { "cssesc": "bin/cssesc" } }, "sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg=="],
 
     "csstype": ["csstype@3.2.3", "", {}, "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ=="],
-
-    "db": ["db@workspace:apps/db"],
 
     "debounce-fn": ["debounce-fn@4.0.0", "", { "dependencies": { "mimic-fn": "^3.0.0" } }, "sha512-8pYCQiL9Xdcg0UPSD3d+0KMlOjp+KGU5EPwYddgzQ7DATsg4fuUDjQtsYLmWjnk2obnNHgV3vE2Y4jejSOJVBQ=="],
 

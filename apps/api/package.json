@@ -4,13 +4,13 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun --env-file=../../.env run --watch src/index.ts"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "^1.7.6",
     "@elysiajs/cors": "^1.4.2",
     "better-auth": "^1.7.6",
-    "db": "workspace:*",
+    "@topaz/db": "workspace:*",
     "elysia": "latest"
   },
   "devDependencies": {

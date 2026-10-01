@@ -1,5 +1,5 @@
 {
-  "name": "db",
+  "name": "@topaz/db",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -7,9 +7,10 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "up": "docker compose up -d --wait",
-    "down": "docker compose down",
-    "push": "bun --env-file=.env drizzle-kit push"
+    "generate": "bun --env-file=../../.env drizzle-kit generate",
+    "migrate": "bun --env-file=../../.env run migrate.ts",
+    "push": "bun --env-file=../../.env drizzle-kit push",
+    "seed": "bun --env-file=../../.env run seeds/index.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.2",

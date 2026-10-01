@@ -1,26 +1,15 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 
 export default function Home() {
   const router = useRouter();
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session } = authClient.useSession();
 
-  useEffect(() => {
-    if (!isPending && !session) {
-      router.replace("/login");
-    }
-  }, [isPending, session, router]);
-
-  if (isPending || !session) {
-    return (
-      <main className="flex flex-1 items-center justify-center text-sm text-muted-foreground">
-        Carregando…
-      </main>
-    );
+  if (!session) {
+    return null;
   }
 
   return (

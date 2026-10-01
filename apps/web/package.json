@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "bun --env-file=../../.env next dev",
+    "build": "bun --env-file=../../.env next build",
+    "start": "bun --env-file=../../.env next start",
     "lint": "biome check",
     "format": "biome format --write"
   },
@@ -15,7 +15,6 @@
     "@phosphor-icons/react": "^2.1.10",
     "better-auth": "^1.7.6",
     "class-variance-authority": "^0.7.1",
-    "db": "workspace:*",
     "cn": "^0.2.6",
     "next": "16.3.4",
     "react": "19.2.8",

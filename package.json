@@ -1,20 +1,22 @@
 {
 	"name": "topaz",
-	"module": "index.ts",
+	"private": true,
 	"type": "module",
 	"workspaces": [
-		"apps/*"
+		"apps/*",
+		"packages/*"
 	],
 	"scripts": {
 		"dev": "bun --filter api --filter web dev",
-		"db:up": "bun --filter db up",
-		"db:down": "bun --filter db down",
-		"db:push": "bun --filter db push"
+		"db:up": "docker compose --env-file .env -f infra/compose.yaml up -d --wait",
+		"db:down": "docker compose --env-file .env -f infra/compose.yaml down",
+		"db:reset": "docker compose --env-file .env -f infra/compose.yaml down -v && docker compose --env-file .env -f infra/compose.yaml up -d --wait",
+		"db:generate": "bun --filter @topaz/db generate",
+		"db:migrate": "bun --filter @topaz/db migrate",
+		"db:push": "bun --filter @topaz/db push",
+		"db:seed": "bun --filter @topaz/db seed"
 	},
 	"devDependencies": {
 		"@types/bun": "latest"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0"
 	}
 }

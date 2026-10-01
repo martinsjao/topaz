@@ -1,6 +1,6 @@
 import { drizzleAdapter } from "@better-auth/drizzle-adapter";
 import { betterAuth } from "better-auth";
-import { db, schema } from "db";
+import { db, schema } from "@topaz/db";
 import { authUrl, webUrl } from "./env";
 
 export const auth = betterAuth({
